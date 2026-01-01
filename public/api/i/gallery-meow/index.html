@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时光相册 - Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="/" class="back-link">← 返回首页</a>
+            <h1>✨ 时光相册</h1>
+            <p>记录每一个精彩瞬间</p>
+        </header>
+
+        <div class="loading-container" id="loading">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">正在扫描图片...</div>
+            <div class="loading-progress" id="loadingProgress"></div>
+        </div>
+
+        <div id="content" class="hidden">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="icon">📸</div>
+                    <div class="label">总图片数</div>
+                    <div class="value" id="totalCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">📅</div>
+                    <div class="label">年份数</div>
+                    <div class="value" id="yearCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">📆</div>
+                    <div class="label">月份数</div>
+                    <div class="value" id="monthCount">0</div>
+                </div>
+            </div>
+
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <label>📅 年份:</label>
+                    <select id="yearFilter" onchange="filterGallery()">
+                        <option value="">全部年份</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>📆 月份:</label>
+                    <select id="monthFilter" onchange="filterGallery()">
+                        <option value="">全部月份</option>
+                    </select>
+                </div>
+                <div class="filter-group" style="flex: 1;">
+                    <label>🔍</label>
+                    <input type="text" id="searchInput" placeholder="搜索文件名..." oninput="filterGallery()"
+                        style="flex: 1;">
+                </div>
+            </div>
+
+            <div class="timeline" id="timeline"></div>
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <button class="close" onclick="closeLightbox()">&times;</button>
+        <button class="nav prev" onclick="navigateImage(-1)">&#10094;</button>
+        <button class="nav next" onclick="navigateImage(1)">&#10095;</button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="">
+        </div>
+        <div class="lightbox-info">
+            <div class="filename" id="lightboxFilename"></div>
+            <div class="meta" id="lightboxMeta"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
